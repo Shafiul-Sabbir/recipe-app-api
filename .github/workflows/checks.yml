@@ -4,12 +4,9 @@ on: [push]
 
 jobs:
   test-lint:
-    runs-on: ubuntu-latest
-
+    name: Test and Lint
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -24,7 +21,10 @@ jobs:
           sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose version
-
+      
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Build and start services
         run: docker-compose up -d --build
 
