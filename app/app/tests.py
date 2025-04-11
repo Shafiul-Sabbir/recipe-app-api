@@ -20,3 +20,4 @@ class CalcTests(SimpleTestCase):
         
         self.assertEqual(res, 5)
         
+        
